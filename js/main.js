@@ -277,10 +277,27 @@
   }
 
   /* ============================================================
+     Gallery image hover
+     ============================================================ */
+  function galleryHover() {
+    if (prefersReducedMotion) return;
+
+    document.querySelectorAll('.bento-gallery img').forEach(function (img) {
+      img.addEventListener('mouseenter', function () {
+        gsap.to(img, { scale: 1.04, duration: 0.5, ease: 'power2.out' });
+      });
+      img.addEventListener('mouseleave', function () {
+        gsap.to(img, { scale: 1, duration: 0.5, ease: 'power2.out' });
+      });
+    });
+  }
+
+  /* ============================================================
      Init
      ============================================================ */
   function init() {
     anchorLinks();
+    galleryHover();
 
     if (prefersReducedMotion) {
       /* Show everything immediately */
